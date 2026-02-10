@@ -11,5 +11,6 @@ taskRouter.post(
   taskController.createTask,
 );
 taskRouter.get("/", userMiddlewares.isAuth, taskController.getAllTask);
+taskRouter.get("/:id", userMiddlewares.isAuth, taskController.getTaskById);
 
 export default taskRouter;
