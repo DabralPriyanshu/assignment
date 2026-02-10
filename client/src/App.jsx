@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import Loader from "./components/Loader";
 import { API } from "./utils/axios";
 import { AuthContext } from "./context/AuthContext";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const { user, setUser } = useContext(AuthContext);
@@ -36,6 +37,7 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
