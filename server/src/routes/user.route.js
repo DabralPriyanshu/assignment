@@ -8,5 +8,6 @@ userRouter.post(
   userMiddlewares.validateRegistrationRequest,
   userController.register,
 );
+userRouter.post("/login", userController.login);
 
 export default userRouter;
