@@ -9,6 +9,7 @@ import { AuthContext } from "./context/AuthContext";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import TaskDetail from "./components/TaskDetail";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const { user, setUser } = useContext(AuthContext);
@@ -37,9 +38,13 @@ function App() {
           path="/"
           element={user ? <HomePage /> : <Navigate to="/login" />}
         />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/" />}
+        />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<ProfilePage />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/tasks/:id" element={<TaskDetail />} />
       </Routes>

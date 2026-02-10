@@ -67,6 +67,13 @@ const HomePage = () => {
             <LayoutDashboard className="mr-3 size-5 text-indigo-300 group-hover:text-white" />
             Go to Dashboard
           </button>
+
+          <button
+            onClick={() => navigate("/profile")}
+            className="flex items-center w-full p-3 hover:bg-indigo-800 rounded-lg transition"
+          >
+            <User className="mr-3 size-5" /> Profile
+          </button>
         </nav>
 
         <div className="p-4 border-t border-indigo-800">
