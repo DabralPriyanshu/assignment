@@ -92,9 +92,23 @@ const logout = (req, res) => {
     });
   }
 };
+const getProfile = async (req, res) => {
+  try {
+    return res
+      .status(200)
+      .json({ message: "Successfully fetched user profile", data: req.user });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      data: {},
+    });
+  }
+};
 
 export default {
   register,
   login,
   logout,
+  getProfile,
 };

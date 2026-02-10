@@ -56,7 +56,7 @@ const isAuth = async (req, res, next) => {
       return res.status(401).json({ message: "Token not present", data: {} });
     }
     const decoded = await compareToken(token);
-    const user = await User.findById(decoded.id);
+    const user = await User.findById(decoded.id).select("-password");
     if (!user) {
       return res.status(401).json({ message: "Invalid token", data: {} });
     }
