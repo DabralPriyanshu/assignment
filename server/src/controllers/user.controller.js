@@ -11,8 +11,8 @@ const register = async (req, res) => {
         data: {},
       });
     }
-    password = await hashPassword(req.body.password);
-    user = await User.create({ name, email, password });
+    const hashedPassword = await hashPassword(req.body.password);
+    user = await User.create({ name, email, password: hashedPassword });
     const token = await generateToken({ id: user._id });
     res.cookie("token", token, {
       httpOnly: true,
