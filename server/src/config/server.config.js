@@ -6,4 +6,5 @@ export default {
   HASH_ROUNDS: process.env.HASH_ROUNDS,
   JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
   JWT_EXPIRY: process.env.JWT_EXPIRY,
+  FRONTEND_URL: process.env.FRONTEND_URL,
 };
