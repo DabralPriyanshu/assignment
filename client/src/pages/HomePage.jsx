@@ -52,7 +52,7 @@ const HomePage = () => {
 
       <aside className="w-64 bg-indigo-900 text-white flex flex-col">
         <div className="p-6 text-2xl font-bold border-b border-indigo-800">
-          MyBrand
+          Task Management Website
         </div>
 
         <nav className="flex-1 p-4 space-y-2">
@@ -66,14 +66,6 @@ const HomePage = () => {
           >
             <LayoutDashboard className="mr-3 size-5 text-indigo-300 group-hover:text-white" />
             Go to Dashboard
-          </button>
-
-          <button className="flex items-center w-full p-3 hover:bg-indigo-800 rounded-lg transition">
-            <User className="mr-3 size-5" /> Profile
-          </button>
-
-          <button className="flex items-center w-full p-3 hover:bg-indigo-800 rounded-lg transition">
-            <Settings className="mr-3 size-5" /> Settings
           </button>
         </nav>
 

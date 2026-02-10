@@ -7,6 +7,8 @@ import Loader from "./components/Loader";
 import { API } from "./utils/axios";
 import { AuthContext } from "./context/AuthContext";
 import NotFound from "./pages/NotFound";
+import Dashboard from "./pages/Dashboard";
+import TaskDetail from "./components/TaskDetail";
 
 function App() {
   const { user, setUser } = useContext(AuthContext);
@@ -37,7 +39,9 @@ function App() {
         />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/tasks/:id" element={<TaskDetail />} />
       </Routes>
     </BrowserRouter>
   );
