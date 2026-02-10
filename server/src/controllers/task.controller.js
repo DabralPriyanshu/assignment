@@ -44,9 +44,28 @@ const getTaskById = async (req, res) => {
     });
   }
 };
+const deleteTask = async (req, res) => {
+  try {
+    const id = req.params?.id;
+    if (!id) {
+      return res.status(400).json({ message: "Task id missing", data: {} });
+    }
+    const task = await Task.findByIdAndDelete(id);
+    return res
+      .status(200)
+      .json({ message: "Successfully deleted a task", data: {} });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      data: {},
+    });
+  }
+};
 
 export default {
   createTask,
   getAllTask,
   getTaskById,
+  deleteTask,
 };
