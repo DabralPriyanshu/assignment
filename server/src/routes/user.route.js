@@ -8,6 +8,11 @@ userRouter.post(
   userMiddlewares.validateRegistrationRequest,
   userController.register,
 );
-userRouter.post("/login", userController.login);
+userRouter.post(
+  "/login",
+  userMiddlewares.validateLoginRequest,
+  userController.login,
+);
+userRouter.post("/logout", userMiddlewares.isAuth, userController.logout);
 
 export default userRouter;
