@@ -30,6 +30,24 @@ const validateRegistrationRequest = async (req, res, next) => {
     return res.status(500).json({ message: "Internal server error", data: {} });
   }
 };
+const validateLoginRequest = async (req, res, next) => {
+  try {
+    if (!req.body.password) {
+      return res
+        .status(400)
+        .json({ message: "Password field is required", data: {} });
+    }
+    if (!req.body.email) {
+      return res
+        .status(400)
+        .json({ message: "Email field is required", data: {} });
+    }
+    next();
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Internal server error", data: {} });
+  }
+};
 
 const isAuth = async (req, res, next) => {
   try {
@@ -62,5 +80,6 @@ const isAuth = async (req, res, next) => {
 
 export default {
   validateRegistrationRequest,
+  validateLoginRequest,
   isAuth,
 };
