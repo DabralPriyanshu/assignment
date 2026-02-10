@@ -1,3 +1,6 @@
+import { compareToken } from "../utils/index.js";
+import User from "../models/user.model.js";
+
 const validateRegistrationRequest = async (req, res, next) => {
   try {
     if (!req.body.name) {
@@ -28,6 +31,36 @@ const validateRegistrationRequest = async (req, res, next) => {
   }
 };
 
+const isAuth = async (req, res, next) => {
+  try {
+    const { token } = req.cookies;
+    if (!token) {
+      return res.status(401).json({ message: "Token not present", data: {} });
+    }
+    const decoded = await compareToken(token);
+    const user = await User.findById(decoded.id);
+    if (!user) {
+      return res.status(401).json({ message: "Invalid token", data: {} });
+    }
+    req.user = user;
+    next();
+  } catch (error) {
+    console.log(error);
+    if (error.name == "TokenExpiredError") {
+      return res
+        .status(401)
+        .json({ message: "Invalid expire token", data: {} });
+    } else if (error.name == "JsonWebTokenError") {
+      return res.status(401).json({ message: "Invalid token", data: {} });
+    } else {
+      return res
+        .status(500)
+        .json({ message: "Internal server error", data: {} });
+    }
+  }
+};
+
 export default {
   validateRegistrationRequest,
+  isAuth,
 };
