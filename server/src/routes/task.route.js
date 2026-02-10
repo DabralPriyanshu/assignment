@@ -13,5 +13,6 @@ taskRouter.post(
 taskRouter.get("/", userMiddlewares.isAuth, taskController.getAllTask);
 taskRouter.get("/:id", userMiddlewares.isAuth, taskController.getTaskById);
 taskRouter.delete("/:id", userMiddlewares.isAuth, taskController.deleteTask);
+taskRouter.put("/:id", userMiddlewares.isAuth, taskController.updateTask);
 
 export default taskRouter;
