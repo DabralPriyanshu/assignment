@@ -14,7 +14,20 @@ const createTask = async (req, res) => {
     });
   }
 };
+const getAllTask = async (req, res) => {
+  try {
+    const task = await Task.find();
+    return res.status(201).json({ message: "Fetched all task", data: task });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      data: {},
+    });
+  }
+};
 
 export default {
   createTask,
+  getAllTask,
 };
