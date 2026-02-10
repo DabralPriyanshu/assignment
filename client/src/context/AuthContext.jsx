@@ -1,13 +1,13 @@
-
 import { createContext, useState } from "react";
 
 export const AuthContext = createContext(null);
 
 const ContextProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // initially not logged in
+  const [user, setUser] = useState(null);
+  const [task, setTask] = useState(null);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
+    <AuthContext.Provider value={{ user, setUser, task, setTask }}>
       {children}
     </AuthContext.Provider>
   );
