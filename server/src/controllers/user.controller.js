@@ -105,10 +105,32 @@ const getProfile = async (req, res) => {
     });
   }
 };
+const updateUser = async (req, res) => {
+  try {
+    const id = req.params?.id;
+    if (!id) {
+      return res.status(400).json({ message: "User id missing", data: {} });
+    }
+    const user = await User.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true,
+    }).select("-password");
+    return res
+      .status(200)
+      .json({ message: "Successfully updated user", data: user });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: "Internal server error",
+      data: {},
+    });
+  }
+};
 
 export default {
   register,
   login,
   logout,
   getProfile,
+  updateUser,
 };
